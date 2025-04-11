@@ -1,0 +1,100 @@
+﻿@{
+    ViewData["Title"] = "Wolne";
+}
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<style>
+    body, h1, h2, h3, h4, h5 {
+        font-family: "Raleway", sans-serif
+    }
+
+    .my-div {
+        margin-bottom: 20px;
+    }
+
+    form {
+        margin-top: 20px;
+        padding: 0;
+    }
+</style>
+
+<div asp-validation-summary="All" class="text-danger"></div>
+
+<h3>Złóż wniosek o urlop</h3>
+
+<form asp-action="SzukajUlropu" method="post">
+    <label for="NrIdentyfikacyjny">Numer identyfikacyjny urlopu</label>
+
+    <input type="date" id="DataOd" name="DataOd" class="form-control" />
+    <br />
+    <input type="date" id="DataDo" name="DataDo" class="form-control" />
+    <br />
+
+
+    <form asp-action="SzukajUrlop" method="post">
+        <label for="NrIdentyfikacyjny">Nr Identyfikacyjny:</label>
+        <input type="text" id="NrIdentyfikacyjny" name="NrIdentyfikacyjny" class="form-control" />
+        <br />
+        <button type="submit" class="btn btn-primary mt-2">Szukaj</button>
+    </form>
+
+    @if (ViewBag.Message != null)
+    {
+        <div class="alert alert-danger mt-3">@ViewBag.Message</div>
+    }
+    <br />
+
+
+    <!-- Dropdown list for available 'wolne' -->
+    <select id="wolneDropdown" class="form-control">
+        <option value="">Wybierz wolne</option>
+    </select>
+
+
+
+
+    <!-- Script to fetch and populate dropdown -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Fetch available wolne from the server
+            $.get('/Wolne/GetAvailableWolne', function(data) {
+                if (data && data.length > 0) {
+                    data.forEach(function(item) {
+                        $('#wolneDropdown').append(new Option(item.text, item.value));
+                    });
+                } else {
+                    $('#wolneDropdown').append(new Option('Brak dostępnych wolnych', ''));
+                }
+            });
+        });
+    </script>
+
+
+
+
+
+
+
+@*     <div class="form-group">
+        <label for="UrlopyId">Kategoria</label>
+        <select asp-for="WolneZListy" class="form-control" asp-items="ViewBag.Urlop">
+            <option value="">-- Wybierz rodzaj wolnego --</option>
+            @foreach (var urlop in ViewBag.Urlop)
+            {
+                <option value="@urlop.Value">@urlop.Text</option>
+            }
+        </select>
+        <span asp-validation-for="WolneZListy" class="text-danger"></span>
+    </div>  *@
+
+    <br />
+    <button type="submit" class="btn btn-primary mt-2">Szukaj</button>
+</form>
+
+@if (ViewBag.Message != null)
+{
+    <div class="alert alert-danger mt-3">@ViewBag.Message</div>
+}

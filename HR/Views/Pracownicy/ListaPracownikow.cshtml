@@ -1,0 +1,53 @@
+﻿@model IEnumerable<ListaPracownikow>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<style>
+    body, h1, h2, h3, h4, h5 {
+        font-family: "Raleway", sans-serif
+    }
+
+    .my-div {
+        margin-bottom: 10px;
+    }
+</style>
+
+
+<h3>Lista Pracowników</h3>
+
+<a asp-controller="Pracownicy" asp-action="Dodaj" class="btn btn-primary">Dodaj Pracownika</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Imię</th>
+            <th>Nazwisko</th>
+            <th>Telefon</th>
+            <th>Email</th>
+            <th>Wypożyczone</th>
+            <th>Akcje</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var Pracownik in Model)
+        {
+            <tr>
+                <td>@Pracownik.Imie</td>
+                <td>@Pracownik.Nazwisko</td>
+                <td>@Pracownik.Telefon</td>
+                <td>@Pracownik.Email</td>
+                <td>@Pracownik.Wziete</td>
+                <td>
+                    <a asp-action="Usun" asp-route-id="@Pracownik.Id" class="btn btn-danger">Usuń</a>
+                </td>
+                <td>
+                    <a asp-action="Edytuj" asp-route-id="@Pracownik.Id" class="btn btn-warning">Edytuj</a>
+                </td>
+                <td>
+                    <a asp-action="UrlopyPracownika" asp-route-id="@Pracownik.Id" class="btn btn-info">Pokaż urlopy</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

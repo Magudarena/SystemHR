@@ -1,0 +1,43 @@
+﻿@model SystemHR.Models.UrlopPerPracownik
+
+<form asp-action="PrzekierujDoPowrotu" method="post" class="mt-4">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <style>
+        body, h1, h2, h3, h4, h5 {
+            font-family: "Raleway", sans-serif;
+        }
+
+        .my-div {
+            margin-bottom: 10px;
+        }
+    </style>
+
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <h3>Zatwierdzanie urlopu dla pracowników HR</h3>
+
+
+    <div class="form-group">
+        <label for="NrIdentyfikacyjny">Numer identyfikacyjny urlopu:</label>
+        <input name="nrIdentyfikacyjny" id="NrIdentyfikacyjny" class="form-control"  required />
+        <span asp-validation-for="Nr_identyfikacyjny" class="text-danger"></span>
+    </div>
+
+    <br />
+
+    <div class="my-div">
+        <button type="submit" class="btn btn-primary">Wróć</button>
+        <button type="reset" class="btn btn-secondary">Wyczyść</button>
+    </div>
+
+    @if (ViewData["Message"] != null)
+    {
+        <div class="alert alert-danger">@ViewData["Message"]</div>
+    }
+</form>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

@@ -1,0 +1,47 @@
+﻿@model SystemHR.Models.Urlop
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<style>
+    body, h1, h2, h3, h4, h5 {
+        font-family: "Raleway", sans-serif
+    }
+
+    .my-div {
+        margin-bottom: 10px;
+    }
+</style>
+
+
+
+
+
+<h3>Podsumowanie urlopu</h3>
+<p><strong>Nr identyfikacyjny:</strong> @Model.Nr_identyfikacyjny</p>
+<p><strong>Nazwa wolnego:</strong> @Model.nazwa_wolnego</p>
+<p><strong>Dane wolnego:</strong> @Model.dane_wolnego</p>
+<p><strong>Identyfikator:</strong> @Model.Identyfikator</p>
+<p><strong>Dostępność:</strong> @(Model.Dostepne ? "Dostępna" : "Niedostępna")</p>
+
+<h3>Wyszukaj Pracownika</h3>
+<form asp-action="SzukajPracownika" method="post">
+    <input type="hidden" name="UrlopId" value="@Model.Id" />
+
+    <div class="form-group">
+        <label for="Telefon">Telefon:</label>
+        <input type="text" id="Telefon" name="Telefon" class="form-control" placeholder="Wprowadź numer telefonu" />
+    </div>
+
+    <br />
+    <button type="submit" class="btn btn-primary">Szukaj Pracownika</button>
+</form>
+
+<!-- Wyświetlanie komunikatu, jeśli istnieje -->
+@if (!string.IsNullOrEmpty(ViewBag.Message))
+{
+    <div class="alert alert-danger mt-3">
+        @ViewBag.Message
+    </div>
+}

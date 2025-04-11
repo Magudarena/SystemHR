@@ -1,0 +1,19 @@
+﻿@{
+    var BranieWolnego = ViewBag.BranieWolnego as BranieWolnego;
+    var urlop = ViewBag.Urlop as Urlop;
+}
+
+<h2>Potwierdzenie powrotu z urlopu</h2>
+<p>Czy na pewno chcesz zakończyć urlop?</p>
+<ul>
+    <li><strong>Nr identyfikacyjny:</strong> @urlop?.Nr_identyfikacyjny</li>
+    <li><strong>Nazwa wolnego:</strong> @urlop?.nazwa_wolnego</li>
+    <li><strong>Dane wolnego:</strong> @urlop?.dane_wolnego</li>
+    <li><strong>Początek wolnego:</strong> @BranieWolnego?.Poczatek_Wolnego?.ToString("yyyy-MM-dd")</li>
+</ul>
+
+<form method="post" action="/Urlopy/WrocPotwierdzenie">
+    <input type="hidden" name="id_wolnego" value="@BranieWolnego?.Id" />
+    <button type="submit" class="btn btn-success">Potwierdź</button>
+    <a href="/Pracownicy/UrlopyPracownika/@BranieWolnego?.Id_Pracownik" class="btn btn-secondary">Anuluj</a>
+</form>

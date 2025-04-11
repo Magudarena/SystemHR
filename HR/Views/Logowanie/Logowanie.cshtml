@@ -1,0 +1,75 @@
+﻿@model SystemHR.Models.LogowanieViewModel
+@{
+    ViewData["Title"] = "Zaloguj";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<style>
+    body, h1, h2, h3, h4, h5 {
+        font-family: "Raleway", sans-serif
+    }
+
+    .my-div {
+        margin-bottom: 10px;
+    }
+</style>
+
+
+
+
+<div class="row">
+    <div class="col-md-4">
+        <section>
+            <form id="account" method="post" asp-action="Logowanie">
+                <h3>Użyj swojego lokalnego konta</h3>
+                <hr />
+                <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+                <div class="form-floating mb-3">
+                    <input asp-for="Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
+                    <label asp-for="Email" class="form-label">Email</label>
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-floating mb-3">
+                    <input asp-for="Haslo" type="password" class="form-control" autocomplete="current-password" aria-required="true" placeholder="Hasło" />
+                    <label asp-for="Haslo" class="form-label">Hasło</label>
+                    <span asp-validation-for="Haslo" class="text-danger"></span>
+                </div>
+                <div class="form-check mb-3">
+                    <input asp-for="RememberMe" class="form-check-input" />
+                    <label asp-for="RememberMe" class="form-check-label">Zapamiętaj mnie</label>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Zaloguj</button>
+                <br /><br />
+                <div>
+                    <p><a asp-action="Rejestracja" asp-controller="Rejestracja">Zarejestruj się</a></p>
+                    <p><a style="text-decoration: underline;">Nie pamiętasz hasła?</a></p>
+
+                </div>
+            </form>
+        </section>
+    </div>
+    <div class="col-md-6 col-md-offset-2">
+        <section>
+            <h3>Witaj ponownie w systemie HR!</h3>
+            <hr />
+            <div>
+                <p>
+                    Witamy ponownie w naszym elektronicznym systemie HR, który stale się rozwija, aby jeszcze lepiej wspierać Cię w zarządzaniu procesami kadrowymi.
+
+                    Jako użytkownik masz dostęp do wielu przydatnych funkcji. Dzięki temu możesz łatwo koordynować działania w swoim obszarze i szybko reagować na bieżące potrzeby.
+
+
+
+                </p>
+            </div>
+        </section>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
