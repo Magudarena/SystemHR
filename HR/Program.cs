@@ -14,7 +14,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<SystemHRContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("SystemHRConnection")));
 
-// Rejestracja us³ug
+// Rejestracja usï¿½ug
 builder.Services.AddControllersWithViews();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -22,8 +22,9 @@ builder.Services.AddSwaggerGen();
 // JWT
 builder.Services.AddAuthentication(options =>
 {
-    options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    // options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+    // options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
 })
 .AddCookie("Cookies", options =>
 {
