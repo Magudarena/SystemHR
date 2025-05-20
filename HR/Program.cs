@@ -1,3 +1,4 @@
+using HR.Services.JWT;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
@@ -10,6 +11,9 @@ using SystemHR.Services.Soap;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Configuration
+Console.WriteLine($"Current configuration: {builder.Environment.EnvironmentName}");
+
 // Konfiguracja baz danych
 builder.Services.AddDbContext<SystemHRContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("SystemHRConnection")));
@@ -19,7 +23,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// JWT
+// Authentication
 builder.Services.AddAuthentication(options =>
 {
     // options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
@@ -33,6 +37,8 @@ builder.Services.AddAuthentication(options =>
 })
 .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options =>
 {
+    var secret = builder.Configuration["API:Secret"] ?? throw new InvalidOperationException("API:Secret configuration is missing.");
+
     options.TokenValidationParameters = new TokenValidationParameters
     {
         ValidateIssuer = true,
@@ -41,12 +47,13 @@ builder.Services.AddAuthentication(options =>
         ValidateIssuerSigningKey = true,
         ValidIssuer = "HRSystem",
         ValidAudience = "HRSystemClient",
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("tajny_klucz_256_bitowy"))
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secret))
     };
 });
 
+builder.Services.AddTransient<IJwtGenerator, JwtGenerator>();
 
-
+// Authorization
 builder.Services.AddAuthorization(options =>
 {
     options.FallbackPolicy = new AuthorizationPolicyBuilder()
