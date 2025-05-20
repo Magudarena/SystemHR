@@ -26,9 +26,9 @@ builder.Services.AddSwaggerGen();
 // Authentication
 builder.Services.AddAuthentication(options =>
 {
-    // options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-    // options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+     options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+     options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+   // options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
 })
 .AddCookie("Cookies", options =>
 {
