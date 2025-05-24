@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using Microsoft.AspNetCore.Mvc;
 
 namespace SystemHR.Models
 {
@@ -7,10 +6,10 @@ namespace SystemHR.Models
     {
         [Required(ErrorMessage = "Proszę podaj email")]
         [EmailAddress(ErrorMessage = "Nieprawidłowy adres email")]
-        public string Email { get; set; }
+        public string Email { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "Proszę podaj hasło")]
-        public string Haslo { get; set; }
+        public string Haslo { get; set; } = string.Empty;
 
         public bool RememberMe { get; set; }
     }

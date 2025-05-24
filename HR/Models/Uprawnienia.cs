@@ -10,7 +10,7 @@ namespace SystemHR.Models
         public int Id { get; set; }
 
         [Required]
-        public string Nazwa { get; set; }
+        public string Nazwa { get; set; } = string.Empty;
 
         public virtual ICollection<PracownikHR>? Uzytkownicy { get; set; }
     }
