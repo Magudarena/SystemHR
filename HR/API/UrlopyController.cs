@@ -1,13 +1,15 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SystemHR.Models;
 
 [ApiController]
 [Route("api/[controller]")]
-public sealed class UrlopyRestController : ControllerBase
+[Authorize(AuthenticationSchemes = "Bearer")]
+public sealed class UrlopyController : ControllerBase
 {
     private readonly SystemHRContext _context;
-    public UrlopyRestController(SystemHRContext context) => _context = context;
+    public UrlopyController(SystemHRContext context) => _context = context;
 
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Urlop>>> GetAll() =>

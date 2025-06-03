@@ -25,7 +25,7 @@ namespace SystemHR.Tests
         public void Index_ReturnsViewWithModel()
         {
             using var ctx = NewContext();
-            var controller = new UrlopyController(ctx);
+            var controller = new Controllers.UrlopyController(ctx);
 
             var result = controller.Index();
 
@@ -38,7 +38,7 @@ namespace SystemHR.Tests
         public void Dodaj_InvalidModel_ReturnsView()
         {
             using var ctx = NewContext();
-            var controller = new UrlopyController(ctx);
+            var controller = new Controllers.UrlopyController(ctx);
             controller.ModelState.AddModelError("nazwa_wolnego", "Required");
 
             var urlop = new Urlop();
@@ -52,7 +52,7 @@ namespace SystemHR.Tests
         public void Dodaj_ValidModel_PersistsAndRedirects()
         {
             using var ctx = NewContext();
-            var controller = new UrlopyController(ctx);
+            var controller = new Controllers.UrlopyController(ctx);
 
             var urlop = new Urlop
             {
