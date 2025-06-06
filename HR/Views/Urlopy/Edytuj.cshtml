@@ -1,0 +1,65 @@
+﻿@model SystemHR.Models.Urlop
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<style>
+    body, h1, h2, h3, h4, h5 {
+        font-family: "Raleway", sans-serif
+    }
+
+    .my-div {
+        margin-bottom: 10px;
+    }
+</style>
+
+
+
+
+<h3>Edytuj urlop</h3>
+
+<form asp-action="Edytuj" method="post">
+    <input type="hidden" asp-for="Id" />
+
+    <div class="form-group">
+        <label asp-for="Nr_identyfikacyjny"></label>
+        <input asp-for="Nr_identyfikacyjny" class="form-control" />
+        <span asp-validation-for="Nr_identyfikacyjny" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="nazwa_wolnego"></label>
+        <input asp-for="nazwa_wolnego" class="form-control" />
+        <span asp-validation-for="nazwa_wolnego" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="dane_wolnego"></label>
+        <input asp-for="dane_wolnego" class="form-control" />
+        <span asp-validation-for="dane_wolnego" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Identyfikator"></label>
+        <input asp-for="Identyfikator" class="form-control" />
+        <span asp-validation-for="Identyfikator" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Kategoria">Kategoria</label>
+        <select asp-for="Kategoria" asp-items="ViewBag.Kategorie" class="form-control"></select>
+        <span asp-validation-for="Kategoria" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Dostepne"></label>
+        <input asp-for="Dostepne" type="checkbox" />
+        <span asp-validation-for="Dostepne" class="text-danger"></span>
+    </div>
+
+
+    <br />
+
+    <button type="submit" class="btn btn-primary">Zapisz</button>
+    <a asp-action="Index" class="btn btn-secondary">Anuluj</a>
+</form>

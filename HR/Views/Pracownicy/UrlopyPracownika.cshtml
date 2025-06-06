@@ -1,0 +1,66 @@
+﻿@model IEnumerable<UrlopPerPracownik>
+
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success">@TempData["Message"]</div>
+}
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<style>
+    body, h1, h2, h3, h4, h5 {
+        font-family: "Raleway", sans-serif;
+    }
+
+    .my-div {
+        margin-bottom: 10px;
+    }
+</style>
+
+<h3>Lista urlopów Pracownika: @ViewBag.PracownikImieNazwisko</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nr Identyfikacyjny</th>
+            <th>nazwa wolnego</th>
+            <th>dane wolnego</th>
+            <th>Identyfikator</th>
+            <th>Początek wolnego</th>
+            <th>Koniec wolnego</th>
+            <th>Akcje</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (!Model.Any())
+        {
+            <tr>
+                <td colspan="10" class="text-center">Brak danych do wyświetlenia.</td>
+            </tr>
+        }
+        else
+        {
+            @foreach (var urlop in Model)
+            {
+                <tr>
+                    <td>@urlop.Nr_identyfikacyjny</td>
+                    <td>@urlop.nazwa_wolnego</td>
+                    <td>@urlop.dane_wolnego</td>
+                    <td>@urlop.Identyfikator</td>
+                    <td>@urlop.Poczatek_Wolnego?.ToString("yyyy-MM-dd")</td>
+                    <td>@urlop.Koniec_Wolnego?.ToString("yyyy-MM-dd")</td>
+                    <td>
+                        @if (urlop.Koniec_Wolnego == null)
+                        {
+                            <a href="/Urlopy/Wroc/@urlop.Id_Wolne" class="btn btn-warning">Wróć</a>
+                        }
+                        else
+                        {
+                            <span class="text-success">Wrócił</span>
+                        }
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

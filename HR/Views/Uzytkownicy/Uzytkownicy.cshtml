@@ -1,0 +1,72 @@
+﻿@model IEnumerable<PracownikHR>
+@{
+    ViewData["Title"] = "Lista użytkowników";
+    var uprawnieniaSelectList = new SelectList(ViewBag.Uprawnienia, "Id", "Nazwa");
+}
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<style>
+    body, h1, h2, h3, h4, h5 {
+        font-family: "Raleway", sans-serif
+    }
+
+    .my-div {
+        margin-bottom: 10px;
+    }
+</style>
+
+
+
+<h3>Lista użytkowników</h3>
+
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Imię</th>
+            <th>Nazwisko</th>
+            <th>Email</th>
+            <th>Aktualne Uprawnienia</th>
+            <th>Akcja</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var PracownikHR in Model)
+        {
+            <tr>
+                <td>@PracownikHR.Id</td>
+                <td>@PracownikHR.Imie</td>
+                <td>@PracownikHR.Nazwisko</td>
+                <td>@PracownikHR.Email</td>
+                <td>@PracownikHR.Uprawnienia?.Nazwa</td>
+                <td>
+                    <form method="post" asp-action="ZmienUprawnienia" asp-controller="Uzytkownicy">
+                        <input type="hidden" name="id" value="@PracownikHR.Id" />
+                        <select name="noweUprawnienia" class="form-select" asp-items="ViewBag.Uprawnienia">
+                            <option value="">Wybierz uprawnienie</option>
+                        </select>
+                <td><button type="submit" class="btn btn-primary">Zatwierdź</button></td>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["Success"]
+    </div>
+}
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["Error"]
+    </div>
+}

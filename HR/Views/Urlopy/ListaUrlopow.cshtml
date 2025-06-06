@@ -1,0 +1,52 @@
+﻿@model IEnumerable<ListaUrlopow>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<style>
+    body, h1, h2, h3, h4, h5 {
+        font-family: "Raleway", sans-serif
+    }
+
+    .my-div {
+        margin-bottom: 10px;
+    }
+</style>
+
+
+<h3>Lista urlopów</h3>
+
+<a asp-action="Dodaj" asp-controller="Urlopy" class="btn btn-primary">Dodaj urlop</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nr Identyfikacyjny</th>
+            <th>nazwa wolnego</th>
+            <th>dane wolnego</th>
+            <th>Identyfikator</th>
+            <th>Kategoria</th>
+            <th>Dostępne</th>
+            <th>Akcje</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var urlop in Model)
+        {
+            <tr>
+                <td>@urlop.Nr_identyfikacyjny</td>
+                <td>@urlop.nazwa_wolnego</td>
+                <td>@urlop.dane_wolnego</td>
+                <td>@urlop.Identyfikator</td>
+                <td>@urlop.Kategoria</td>
+                <td>@(urlop.Dostepne ? "TAK" : "NIE")</td>
+                <td>
+                    <a asp-action="Usun" asp-route-id="@urlop.Id" class="btn btn-danger">Usuń</a>
+                </td>
+                <td>
+                    <a asp-action="Edytuj" asp-route-id="@urlop.Id" class="btn btn-warning">Edytuj</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

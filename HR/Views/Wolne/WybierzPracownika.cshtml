@@ -1,0 +1,63 @@
+﻿@model IEnumerable<dynamic>
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<style>
+    body, h1, h2, h3, h4, h5 {
+        font-family: "Raleway", sans-serif
+    }
+
+    .my-div {
+        margin-bottom: 10px;
+    }
+</style>
+
+
+
+
+
+
+
+
+<h3>Wybierz Pracownika</h3>
+
+@if (!Model.Any())
+{
+    <p>Nie znaleziono Pracowników.</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Imię</th>
+                <th>Nazwisko</th>
+                <th>Email</th>
+                <th>Telefon</th>
+                <th>Akcja</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var Pracownik in Model)
+            {
+                <tr>
+                    <td>@Pracownik.Imie</td>
+                    <td>@Pracownik.Nazwisko</td>
+                    <td>@Pracownik.Email</td>
+                    <td>@Pracownik.Telefon</td>
+                    <td>
+                        <form asp-action="WezWolne" method="post">
+                            <input type="hidden" name="UrlopId" value="@ViewBag.UrlopId" />
+                            <input type="hidden" name="PracownikId" value="@Pracownik.Id" />
+
+
+                            <button type="submit" class="btn btn-success">Weź wolne</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
