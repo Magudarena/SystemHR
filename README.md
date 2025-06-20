@@ -1,30 +1,12 @@
 # SystemHR
+Magdalena Zawada 15142 lab3/2/AD
 
-Magdalena Zawada
-15142
-lab3/2/AD
-
-Projekt
-Systemu HR
-System kadrowy do ewidencji i rozliczania urlopów, delegacji, nieobecności
+Projekt Systemu HR - System kadrowy do ewidencji i rozliczania urlopów, delegacji, nieobecności
 
 Cel aplikacji
-Stworzenie nowoczesnego i bezpiecznego systemu HR, który będzie służył do zarządzania danymi kadrowymi, ewidencjonowania urlopów, delegacji, nieobecności (w tym chorobowych) oraz umożliwi pracownikom dostęp do systemu przez portal WWW. System zapewni wysoki poziom bezpieczeństwa danych i funkcjonalności, szczególnie w zakresie ochrony danych osobowych zgodnie z przepisami RODO, a także będzie chronił przed zagrożeniami wynikającymi z cyberataków.
-Dane
-Platforma: ASP.NET Core
-Środowisko: Visual Studio 2022
-Wersja .NET: .NET 8.0 lub nowsza
-Baza danych: SQL Server
-Wymagania
-Aby poprawnie uruchomić i korzystać z systemu, wymagane są następujące komponenty:
-• Visual Studio z zainstalowanymi dodatkami do programowania w ASP.NET oraz odpowiednie pakiety Entity Framework – Core i SQL server, wersja projektu: .NET 8
-• SQL Server lub kompatybilna baza danych, na której postawimy bazę z README.md
-• Repozytorium pobrane z https://github.com/Magudarena/SystemHR.git
-• Komputer z systemem operacyjnym Windows
-• RAM i odrobinę dostępnego miejsca na dysku.
-Instrukcja instalacji – może Pan pominąć
-Instalacja nie będzie konieczna, bo umieściłam wszystkie widoki w dokumentacji, ale jakby Pan chciał to poniżej przedstawiam instalację:
+Stworzenie nowoczesnego i bezpiecznego systemu HR, który będzie służył do zarządzania danymi kadrowymi, ewidencjonowania urlopów, delegacji, nieobecności (w tym chorobowych) oraz umożliwi pracownikom dostęp do systemu przez portal WWW.
 
+Instrukcja instalacji:
 1. Najpierw należy pobrać repozytorium do swojego Visual Studio z mojego konta na githubie https://github.com/Magudarena/SystemHR.git
 2. Po tym należy włączyć Microsoft SQL Server Management Studio i wkleić w niego podany poniżej kod wprowadzając kolejne fragmenty kodu:
 
@@ -235,116 +217,3 @@ VALUES
    • Historia urlopów – Przegląd historii wniosków urlopowych i dni wolnych pracownika.
    • Raport o delegacjach – Generowanie raportów z zakończonych delegacji.
    • Eksport danych – Możliwość eksportu raportów w formatach PDF i Excel.
-   Architektura repozytorium
-   Projekt oparty jest na wzorcu Model-View-Controller, który dzieli aplikację na trzy główne części:
-   Kontrolery
-   Kontroler to warstwa, która pośredniczy pomiędzy użytkownikiem a danymi. Odpowiada za obsługę żądań HTTP i komunikację z modelem, a także przekazywanie danych do widoków. W projekcie znajdują się kontrolery takie jak:
-   • HomeController.cs – Obsługuje stronę główną aplikacji (np. Index i Privacy).
-   • KategorieController.cs – Zarządza kategoriami, dodawanie, usuwanie i wyświetlanie.
-   • LogowanieController.cs – Odpowiada za logowanie użytkowników.
-   • PracownicyController.cs – Obsługuje operacje na pracownikach.
-   • RejestracjaController.cs – Obsługuje rejestrację nowych użytkowników.
-   • UrlopyController.cs – Zarządza urlopami, dodawaniem, edytowaniem i przeglądaniem.
-   • UzytkownicyController.cs – Zarządza listą użytkowników oraz ich operacjami.
-   • WolneController.cs – Obsługuje zarządzanie dniami wolnymi pracowników.
-   • WracanieController.cs – Odpowiada za operacje związane z powrotem użytkowników.
-   Modele
-   Model w tym systemie reprezentuje dane aplikacji i jest odpowiedzialny za interakcję z bazą danych. Model danych jest powiązany z Entity Framework Core, co pozwala na mapowanie obiektów na tabele w bazie danych.
-   • BranieWolnego.cs – Model do obsługi operacji związanych z braniem dni wolnych.
-   • ErrorViewModel.cs – Model do obsługi błędów w aplikacji.
-   • Kategoria.cs – Model kategorii.
-   • ListaPracownikow.cs – Model reprezentujący listę pracowników.
-   • ListaUrlopow.cs – Model do obsługi listy urlopów.
-   • LogowanieModel.cs – Model logowania użytkownika.
-   • LogowanieViewModel.cs – Model widoku logowania.
-   • Pracownik.cs – Model reprezentujący pracownika.
-   • PracownikHR.cs – Model pracownika HR.
-   • RegisterViewModel.cs – Model widoku rejestracji.
-   • SystemHRContext.cs – Kontekst bazy danych aplikacji.
-   • Uprawnienia.cs – Model obsługujący uprawnienia użytkowników.
-   • Urlop.cs – Model urlopu.
-   • UrlopPerPracownik.cs – Model relacji między urlopem a pracownikiem.
-   • Wolne.cs – Model dotyczący dni wolnych.
-   • Wracanie.cs – Model do obsługi powrotów użytkowników.
-   Widoki
-   Widoki są odpowiedzialne za wyświetlanie danych użytkownikowi. W tym projekcie wykorzystywane są Razor Views, które pozwalają na dynamiczne generowanie HTML z osadzonymi fragmentami C#. Widoki znajdują się w folderze Views.
-1. Home
-   • Index.cshtml – Główna strona aplikacji, wyświetla wprowadzenie.
-   • Privacy.cshtml – Strona polityki prywatności, zawiera informacje o systemie.
-1. Kategorie
-   • Dodaj.cshtml – Formularz do dodawania nowej kategorii, np. typów urlopów lub grup.
-   • Kategorie.cshtml – Widok wyświetlający listę kategorii z możliwością ich zarządzania.
-   • Usun.cshtml – Widok potwierdzenia usunięcia kategorii.
-1. Logowanie
-   • Logowanie.cshtml – Formularz logowania, w którym użytkownik wprowadza swoje dane.
-1. Pracownicy
-   • Edytuj.cshtml – Formularz edycji danych pracownika, np. zmiana stanowiska.
-   • ListaPracownikow.cshtml – Widok listy pracowników z opcjami edycji i usuwania.
-   • NowyPracownik.cshtml – Formularz do dodawania nowego pracownika.
-   • UrlopyPracownika.cshtml – Widok szczegółowy urlopów konkretnego pracownika.
-   • Usun.cshtml – Widok potwierdzenia usunięcia danych pracownika.
-1. Rejestracja
-   • Rejestracja.cshtml – Formularz rejestracji nowego użytkownika.
-1. Shared
-   • Error.cshtml – Widok błędów, w przypadku wystąpienia nieoczekiwanych problemów.
-   • \_Layout.cshtml – Główny szablon aplikacji, który definiuje układ interfejsu.
-   • \_ValidationScriptsPartial.cshtml – Widok włączający skrypty walidacji po stronie klienta.
-1. Urlopy
-   • Edytuj.cshtml – Formularz edycji danych dotyczących urlopu, np. zmiana daty.
-   • ListaUrlopow.cshtml – Widok wyświetlający listę urlopów z opcjami edycji i usuwania.
-   • NowyUrlop.cshtml – Formularz do dodawania nowego urlopu dla pracownika.
-   • Usun.cshtml – Widok potwierdzający usunięcie urlopu z systemu.
-   • Wroc.cshtml – Widok powrotu z urlopu, umożliwiający oznaczenie, że pracownik zakończył swój urlop.
-1. Uzytkownicy
-   • Uzytkownicy.cshtml – Widok wyświetlający listę użytkowników z opcjami zarządzania.
-1. Wolne
-   • BladPracownika.cshtml – Widok, gdy wystąpi problem związany z operacjami.
-   • PodsumowanieUrlopu.cshtml – wykorzystane i dostępne dni urlopu danego pracownika.
-   • Wolne.cshtml – Formularz zarządzania dniami wolnymi pracowników.
-   • WybierzPracownika.cshtml – Widok umożliwiający wybór pracownika do operacji.
-1. Wracanie
-   • Wracanie.cshtml – Widok obsługujący powrót pracownika do pracy po urlopie.
-   • Wroc.cshtml – Formularz umożliwiający zapisanie szczegółów związanych z powrotem.
-   Baza danych
-   Baza danych SystemHR została zaprojektowana do zarządzania zasobami kadrowymi w organizacji, w tym pracownikami, urlopami, kategoriami oraz użytkownikami systemu. Baza danych zapewnia integralność danych, wykorzystując klucze obce do utrzymania spójności między tabelami np. pracownicy są przypisani do działów, urlopy są powiązane z konkretnymi pracownikami. Umożliwia przypisywanie użytkownikom różnych poziomów uprawnień, co pozwala na kontrolę dostępu do danych. Oto szczegółowa analiza struktury bazy:
-   Tabele w bazie danych
-   • kategoria – przechowuje nazwy kategorii urlopowych (np. „Urlop wypoczynkowy”).
-   • Pracownik – zawiera dane pracowników (imię, nazwisko, telefon, e-mail).
-   • Urlop – przechowuje informacje o rodzajach wolnego (nr identyfikacyjny, nazwa, kategoria).
-   • uprawnienia – typowe role: Administrator, HR, Pracownik.
-   • pracownikhr – pracownicy odpowiedzialni za system HR z uprawnieniami do zarządzania.
-   • wolne – rejestr powiązań między Urlop a Pracownik (kto i kiedy korzystał z urlopu).
-   Widoki w bazie danych
-   • UrlopPerPracownik – prezentacja danych na temat urlopów wraz z informacją o pracowniku.
-   • Listapracownikow – pokazuje pracowników oraz liczbę aktywnych wniosków urlopowych.
-   • ListaUrlopow – lista wszystkich urlopów z kategorią i informacją o dostępności.
-
-Procesy
-System SystemHR zarządza wieloma procesami, które są realizowane w sposób sekwencyjny:
-
-1. Nowy użytkownik trafia na stronę główną gdzie może się zalogować, zarejestrować lub przeczytać politykę prywatności firmy.
-
-2. Rejestracja i logowanie użytkowników - Po rejestracji użytkownik może się zalogować.
-   • Rejestracja
-
-• Logowanie
-
-3. Zarządzanie urlopami i nieobecnościami - Pracownicy mogą składać wnioski urlopowe, które trafiają do działu HR do akceptacji. Po zatwierdzeniu system rejestruje nieobecność w harmonogramie. Możliwe jest również anulowanie wniosków przed ich rozpoczęciem.
-
-4. Pracownicy HR mogą modyfikować rodzaje urlopów, edytować lub usuwać.
-
-5. Lista pracowników jest dostępna dla osób pracujących w HR, a pracownik może wyświetlić jedynie swoje urlopy.
-
-6. Zarządzanie pracownikami –System przydziela automatycznie podstawową rolę „Pracownik” przy zakładaniu konta, którą może zmienić tylko administrator przyznając uprawnienia wyższe rangą takie jak „HR” czy „Administrator”.
-
-• Administrator ma dostęp do wszystkiego, włącznie z zarządzaniem dostępami.
-
-• Pracownik HR ma dostęp do zarządzania danymi pracowników i ich urlopami.
-
-• Zalogowany użytkownik ma dostęp do swoich danych oraz możliwych opcji.
-
-• Użytkownik niezalogowany ma jedynie dostęp do logowania i polityki prywatności.
-
-7. Zarządzanie HR- Pracownicy mogą zgłaszać wyjazdy służbowe, a HR zatwierdza je oraz rejestruje w systemie. HR może również dodawać rodzaje wolnego.
-
-8. HR może również zarządzać typami wolnych dni, dzięki czemu możliwe jest oddzielanie ich do poszczególnych kategorii.
